@@ -1,2 +1,5 @@
 Yksinkertainen esimerkki SHA1-tarkistussumman laskennasta.
 Sovellus käyttää osoitteesta http://www.webtoolkit.info/javascript-sha1.html kopioitua SHA1-laskinta, joka on helposti vaihdettavissa toiseen.
+
+Työkalut:
+  hetuconv.rb -- Konvertoi csv-tiedostosta sha1-summan joko rivinvaihdoilla erotelluksi luetteloksi tai json-string-arrayksi
