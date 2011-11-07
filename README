@@ -1,5 +1,13 @@
 Yksinkertainen esimerkki SHA1-tarkistussumman laskennasta.
 Sovellus käyttää osoitteesta http://www.webtoolkit.info/javascript-sha1.html kopioitua SHA1-laskinta, joka on helposti vaihdettavissa toiseen.
 
+Tiedostot:
+  server_side.html -- Esimerkkitoteutus formista joka laskee clientillä sukunimellä suolatun hetun tarkistussumman, jota voi käyttää palvelinvalidointiin.
+  index.html -- Client-sovellus, joka käyttää hetuconv_client.rb:llä luotua checksums.js -tiedostoa reaaliaikaiseen tarkistukseen käyttämättä palvelinta.
+  checksums.js -- Esimerkkitiedosto tarkistussummista, täsmää 000000-000 ja 111111-111 -hetujen tarkistussummiin.
+  webtoolkit.sha1.js -- Javascriptillä toteutettu SHA1-laskin.
+
 Työkalut:
-  hetuconv.rb -- Konvertoi csv-tiedostosta sha1-summan joko rivinvaihdoilla erotelluksi luetteloksi tai json-string-arrayksi
+  hetuconv.rb -- Konvertoi CSV-tiedostosta sha1-summan joko rivinvaihdoilla erotelluksi luetteloksi tai json-string-arrayksi
+  hetuconv_client.rb -- Konvertoi CSV-tiedostosta henkilötunnusten SHA1-summat javascript-tiedostoksi.
+

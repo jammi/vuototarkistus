@@ -38,10 +38,10 @@ end
 
 output_arr = []
 CSV.foreach( infile, :quote_char => '"', :col_sep =>',', :row_sep =>:auto) do |row|
-  hetu = row.first
+  hetu = row.first.downcase
   nimi = row[2]
   nimi = '' if nimi.nil?
-  sum = Digest::SHA1.hexdigest( hetu+nimi )
+  sum = Digest::SHA1.hexdigest( hetu+nimi.downcase )
   if json_mode
     output_arr.push sum
   else
