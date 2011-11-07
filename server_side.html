@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head><title>Tarkista onko tietosi vuodettujen listalla</title>
+<!--
+Tekijä: Juha-Jarmo Heinonen
+Tätä esimerkkiä saa soveltaa vapaasti.
+-->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script src="webtoolkit.sha1.js"></script>
+<script>
+function alustus(){
+  var
+  nimi = document.getElementById('nimi'),
+  hetu = document.getElementById('hetu'),
+  sha1sum = document.getElementById('sha1sum'),
+  laske = function(){
+    sha1sum.value = SHA1(nimi.value.toLowerCase()+hetu.value.toLowerCase());
+  };
+  laske();
+  document.onkeyup = laske;
+}
+</script>
+</head><body>
+<fieldset>
+  <legend>Yksilöivää tietoa ei lähetetä, voit tarkistaa toteutuksen tämän sivun lähdekoodista</legend>
+  Sukunimi:<br /><input id="nimi" type="text" style="width:50em" /><br />
+  Hetu:<br /><input id="hetu" type="text" style="width:50em" /><br />
+  Tekstikenttien kirjainkoolla ei ole merkitystä.
+</fieldset>
+<form method="post" enctype="application/x-www-form-urlencoded" action="tarkista.cgi">
+  <fieldset>
+    <legend>Palvelimelta tarkistetaan tietojen tarkistussumma, joka on:</legend>
+    <input id="sha1sum" name="sha1sum" style="width:50em" type="text" /><br />
+    <input type="submit" name="ok" value="Tarkista" />
+  </fieldset>
+</form>
+<fieldset>
+  <legend>Yleistä</legend>
+  Jos käytössäsi ei ole javascriptiä tulkkaava selain, voit myös laskea muilla välineillä SHA1-summan heksadesimaalimuotoisen tuloksen ja syöttää sen ylläolevaan kenttään seuraavalla kaavalla:<br />
+  <code>sha1( sukunimi + hetu )</code><br />
+  Esimerkin <code>heinonen010203-1234</code> tarkistussumma on <code>ba543df918c0e595f3428a6c933c5851a229c953</code>
+</fieldset>
+<script>
+alustus();
+</script>
+</body></html>
