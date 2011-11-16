@@ -13,27 +13,34 @@ function alustus(){
   user_field = document.getElementById('user'),
   passwd_field = document.getElementById('passwd'),
   found_field = document.getElementById('found'),
+  color_support = false,
   laske = function(){
+    if(!window.salt||!window.checksums){
+      found_field.innerText = 'Tarkistustietokanta ei ole käytössä; lomake ei toimi.';
+      return false;
+    }
     var
     user = user_field.value,
     passwd = passwd_field.value,
     checksum = SHA1( user+'-'+passwd+salt );
     if ( checksums.indexOf( checksum ) !== -1 ) {
-      found.style.color = '#f00';
-      found.innerText = 'Tunnus ja salasana on vuodettu!'
+      found_field.style.color = '#ff0000';
+      found_field.innerText = 'Tunnus ja salasana on vuodettu!'
     }
     else {
-      found.style.color = '#090';
-      found.innerText = 'Syötettyä tunnusta ja salasanaa ei ole vuodettu.'
+      found_field.style.color = '#009900';
+      found_field.innerText = 'Syötettyä tunnusta ja salasanaa ei ole vuodettu.'
     }
+    return true;
   };
-  laske();
-  document.onkeyup = laske;
+  if( laske() ){ // palauttaa false, jos netcar_sums.js ei ole ladattuna; ei sido eventtiä
+    document.onkeyup = laske;
+  }
 }
 </script>
 </head><body>
 <fieldset>
-  <legend>Sovellus tarkistaa onko henkilötunnuksesi vuodettujen joukossa</legend>
+  <legend>Sovellus tarkistaa onko netcar.fi -tunnusta ja salasanaasi vuodettu</legend>
   Tunnus:<br /><input id="user" type="text" /><br />
   Salasana:<br /><input id="passwd" type="text" /><br />
   Tulos: <strong id="found" /></strong><br />
