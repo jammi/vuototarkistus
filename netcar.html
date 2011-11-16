@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head><title>Tarkista onko netcar.fi -tunnusta ja salasanaasi vuodettu</title>
+<!--
+Tekijä: Juha-Jarmo Heinonen
+Tätä esimerkkiä saa soveltaa vapaasti.
+-->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<script src="netcar_sums.js"></script>
+<script src="webtoolkit.sha1.js"></script>
+<script>
+function alustus(){
+  var
+  user_field = document.getElementById('user'),
+  passwd_field = document.getElementById('passwd'),
+  found_field = document.getElementById('found'),
+  laske = function(){
+    var
+    user = user_field.value,
+    passwd = passwd_field.value,
+    checksum = SHA1( user+'-'+passwd+salt );
+    if ( checksums.indexOf( checksum ) !== -1 ) {
+      found.style.color = '#f00';
+      found.innerText = 'Tunnus ja salasana on vuodettu!'
+    }
+    else {
+      found.style.color = '#090';
+      found.innerText = 'Syötettyä tunnusta ja salasanaa ei ole vuodettu.'
+    }
+  };
+  laske();
+  document.onkeyup = laske;
+}
+</script>
+</head><body>
+<fieldset>
+  <legend>Sovellus tarkistaa onko henkilötunnuksesi vuodettujen joukossa</legend>
+  Tunnus:<br /><input id="user" type="text" /><br />
+  Salasana:<br /><input id="passwd" type="text" /><br />
+  Tulos: <strong id="found" /></strong><br />
+  <em>Tekstikenttien kirjainkoolla on merkitystä, eikä mitään tämän lomakkeen tietoja lähetetä minnekään; kaikki tarkitukset tehdään omassa selaimessasi.</em>
+</fieldset>
+<script>
+alustus();
+</script>
+</body></html>
